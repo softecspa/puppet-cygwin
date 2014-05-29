@@ -1,9 +1,40 @@
+# ==Class cygwin
+#
+# Install cygwin packages
+#
+# ===Parameters
+#
+# [*tmp_dir*]
+#   temp dir used to download the installer. Mandatory
+#
+# [*mirror_src*]
+#   Mirror used to download packages. Default http://cygwin.mirror.constant.com
+#
+# [*packages*]
+#   Comma separated list of packages to install. Default: wget,openssh
+#
+# ===Examples
+#
+# Install wget, openssh and curl packages
+#
+#   class {'cygwin':
+#     packages  => 'wget,openssh,curl'
+#   }
+#
+# === Authors
+#
+# Author Name Felice Pizzurro <felice.pizzurro@softecspa.it>
+#
+# === Copyright
+#
+# Copyright 2014 Softec SpA
+#
 class cygwin (
-  $tmp_dir    = 'C:\\vagrant-init\\tmp',
+  $tmp_dir,
   $mirror_src = 'http://cygwin.mirror.constant.com',
   $packages   = 'openssh,wget',
 ) {
-  
+
   if $::operatingsystem != 'windows' {
     fail('cygwin module supports only windows OS')
   }
